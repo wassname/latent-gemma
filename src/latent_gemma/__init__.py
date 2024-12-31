@@ -1,5 +1,4 @@
-from .main import LatentReasoningGemmaForCausalLM, LatentReasoningCustomModelForCausalLM, LatentReasoningForCausalLM, LatentReasoningGPT2
-
+from .main import LatentReasoningGemmaForCausalLM
 # Version info
 __version__ = "0.1.0"
 
