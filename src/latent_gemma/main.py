@@ -39,7 +39,7 @@ class LatentReasoningGemmaForCausalLM(GemmaForCausalLM):
         super().__init__(config_)
         self.tokenizer: PreTrainedTokenizer = None
         self.current_stage = 0
-        self.model_config = LatentReasoningGemmaForCausalLM.DEFAULT_CONFIG
+        self.model_config = type(self).DEFAULT_CONFIG
         self.debug = self.model_config.get("debug", False)
         self.diversity_weight = self.model_config.get("diversity_weight", 0.1)
         self.coherence_weight = self.model_config.get("coherence_weight", 0.1)
