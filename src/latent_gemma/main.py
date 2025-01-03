@@ -35,8 +35,8 @@ class LatentReasoningGemmaForCausalLM(GemmaForCausalLM):
 
     }
     
-    def __init__(self, config_):
-        super().__init__(config_)
+    def __init__(self, config):
+        super().__init__(config)
         self.tokenizer: PreTrainedTokenizer = None
         self.current_stage = 0
         self.model_config = type(self).DEFAULT_CONFIG
