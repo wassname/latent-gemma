@@ -47,15 +47,17 @@ The model shows significant improvements across multiple metrics compared to the
 pip install git+https://github.com/vicksEmmanuel/latent-gemma.git
 
 # Basic usage
-from latent_gemma import LatentReasoningGemmaForCausalLM
 from transformers import AutoTokenizer, AutoConfig, AutoModelForCausalLM
+from latent_gemma import LatentReasoningGemmaForCausalLM
+
+model_path = "victorumesiobi/gemma-2-japanese-english-reasoning/transformers/1" # Replace with the path to which your model was downloaded too
 
 # Load model and tokenizer
-tokenizer = AutoTokenizer.from_pretrained("victorumesiobi/gemma-2-japanese-english-reasoning/transformers/1")
-model_config = AutoConfig.from_pretrained("victorumesiobi/gemma-2-japanese-english-reasoning/transformers/1")
+tokenizer = AutoTokenizer.from_pretrained(model_path)
+model_config = AutoConfig.from_pretrained(model_path)
 
 config = {
-    "max_length": 512
+    "max_length": 256
 }
 latent_config = LatentReasoningGemmaForCausalLM.DEFAULT_CONFIG
 LatentReasoningGemmaForCausalLM.DEFAULT_CONFIG = {
@@ -64,7 +66,8 @@ LatentReasoningGemmaForCausalLM.DEFAULT_CONFIG = {
 }
 updated_latent_config = LatentReasoningGemmaForCausalLM.DEFAULT_CONFIG
 model = LatentReasoningGemmaForCausalLM(config=model_config)
-model = model.from_pretrained("victorumesiobi/gemma-2-japanese-english-reasoning/transformers/1")
+model = model.from_pretrained(model_path)
+model.tokenizer = tokenizer
 
 
 
@@ -88,7 +91,7 @@ output = model.generate_answer(
 
 ```python
 # Translation example
-text = "Translate to Japanese: Hello, how are you?"
+text = "人気漫画『ドラえもん』の登場人物で、ジャイアンの苗字は剛田ですが、スネ夫の苗字は何でしょう？"
 output = model.generate_answer(
     model=model, 
     tokenizer=tokenizer, 
@@ -97,7 +100,7 @@ output = model.generate_answer(
     max_length=256
 )
 print(output)
-# Output: こんにちは、お元気ですか？
+# 答え：骨川（滑川も正解）
 ```
 
 ## Training Details
