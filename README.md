@@ -26,15 +26,10 @@ Gemma 2: Japanese-English Reasoning extends Gemma 2's capabilities by enabling r
 
 The model builds upon the Gemma 2 architecture with additional components:
 
-- Continuous latent space encoder/decoder
-- Modified attention mechanisms for latent space operations
-- Specialized thought projection layers 
-- Language-aware processing modules
-
 ### Technical Specifications
 
 - Base Model: Gemma 2 (2B parameters)
-- Training Data: llm-japanese-dataset (8.4M records)
+- Training Data: llm-japanese-dataset (30k records)
 - Framework: PyTorch with 🤗 Transformers
 
 ## Performance
@@ -56,8 +51,8 @@ from latent_gemma import LatentReasoningGemmaForCausalLM
 from transformers import AutoTokenizer, AutoConfig, AutoModelForCausalLM
 
 # Load model and tokenizer
-tokenizer = AutoTokenizer.from_pretrained("your/model/path")
-model_config = AutoConfig.from_pretrained("your/model/path")
+tokenizer = AutoTokenizer.from_pretrained("victorumesiobi/gemma-2-japanese-english-reasoning/transformers/1")
+model_config = AutoConfig.from_pretrained("victorumesiobi/gemma-2-japanese-english-reasoning/transformers/1")
 
 config = {
     "max_length": 512
@@ -69,7 +64,7 @@ LatentReasoningGemmaForCausalLM.DEFAULT_CONFIG = {
 }
 updated_latent_config = LatentReasoningGemmaForCausalLM.DEFAULT_CONFIG
 model = LatentReasoningGemmaForCausalLM(config=model_config)
-model = model.from_pretrained("your/model/path")
+model = model.from_pretrained("victorumesiobi/gemma-2-japanese-english-reasoning/transformers/1")
 
 
 
