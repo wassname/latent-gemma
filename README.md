@@ -44,7 +44,7 @@ The model shows significant improvements across multiple metrics compared to the
 
 ```bash
 # Install from GitHub
-pip install git+https://github.com/vicsEmmanuel/latent-gemma.git
+pip install git+https://github.com/vicksEmmanuel/latent-gemma.git
 
 # Basic usage
 from latent_gemma import LatentReasoningGemmaForCausalLM
