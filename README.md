@@ -1,3 +1,17 @@
+
+
+setup
+~~~sh
+# curl -LsSf https://astral.sh/uv/install.sh | sh
+uv sync
+~~~
+
+https://github.com/casper-hansen/OpenCoconut
+https://github.com/lucidrains/coconut-pytorch
+https://github.com/wassname/latent-gemma
+
+
+----
 # Gemma 2: Japanese-English Reasoning
 
 A fine-tuned version of Google's Gemma 2 model enhanced with continuous latent reasoning capabilities, based on the COCONUT (Chain of Continuous Thought) paradigm introduced by Hao et al. (2024).
