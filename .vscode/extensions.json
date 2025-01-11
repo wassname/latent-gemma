@@ -1,5 +1,10 @@
 {
     "recommendations": [
+        "github.copilot",
+        "jsynowiec.vscode-insertdatestring",
+        "visualstudioexptteam.vscodeintellicode",
+        "yzhang.markdown-all-in-one",
+        "charliermarsh.ruff",
         "ms-toolsai.jupyter",
         "ms-python.python"
     ]
