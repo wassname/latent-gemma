@@ -1,3 +1,14 @@
+
+## Installation & Usage
+
+~~~bash
+# Install from GitHub
+uv sync
+
+code fine_tuning_gemma2.ipynb
+~~~
+
+
 # Gemma 2: Japanese-English Reasoning
 
 A fine-tuned version of Google's Gemma 2 model enhanced with continuous latent reasoning capabilities, based on the COCONUT (Chain of Continuous Thought) paradigm introduced by Hao et al. (2024).
@@ -32,77 +43,6 @@ The model builds upon the Gemma 2 architecture with additional components:
 - Training Data: llm-japanese-dataset (30k records)
 - Framework: PyTorch with 🤗 Transformers
 
-## Performance
-
-The model shows significant improvements across multiple metrics compared to the base Gemma 2:
-
-| Stage | Accuracy | Fuzzy Score | BLEU Score | BERTScore F1 |
-|-------|----------|-------------|------------|--------------|
-| Ours   | 0.92     | 92.23       | 0.91       | 0.97         |
-
-## Installation & Usage
-
-```bash
-# Install from GitHub
-pip install git+https://github.com/vicksEmmanuel/latent-gemma.git
-
-# Basic usage
-from transformers import AutoTokenizer, AutoConfig, AutoModelForCausalLM
-from latent_gemma import LatentReasoningGemmaForCausalLM
-
-model_path = "victorumesiobi/gemma-2-japanese-english-reasoning/transformers/1" # Replace with the path to which your model was downloaded too
-
-# Load model and tokenizer
-tokenizer = AutoTokenizer.from_pretrained(model_path)
-model_config = AutoConfig.from_pretrained(model_path)
-
-config = {
-    "max_length": 256
-}
-latent_config = LatentReasoningGemmaForCausalLM.DEFAULT_CONFIG
-LatentReasoningGemmaForCausalLM.DEFAULT_CONFIG = {
-    **latent_config,
-    **config
-}
-updated_latent_config = LatentReasoningGemmaForCausalLM.DEFAULT_CONFIG
-model = LatentReasoningGemmaForCausalLM(config=model_config)
-model = model.from_pretrained(model_path)
-model.tokenizer = tokenizer
-
-
-
-# Generate with continuous reasoning
-output = model.generate(
-    tokenizer(text, return_tensors="pt").input_ids,
-    max_length=256,
-)
-
-# Generate with continous reasoning using in-built function
-output = model.generate_answer(
-    model=model, 
-    tokenizer=tokenizer, 
-    question=text, 
-    k=5, 
-    max_length=256
-)
-```
-
-### Example
-
-```python
-# Translation example
-text = "人気漫画『ドラえもん』の登場人物で、ジャイアンの苗字は剛田ですが、スネ夫の苗字は何でしょう？"
-output = model.generate_answer(
-    model=model, 
-    tokenizer=tokenizer, 
-    question=text, 
-    k=5, 
-    max_length=256
-)
-print(output)
-# 答え：骨川（滑川も正解）
-```
-
 ## Training Details
 
 The model was trained using a multi-stage curriculum:
@@ -119,6 +59,9 @@ Training parameters:
 
 
 ## Citation
+
+- https://github.com/vicksEmmanuel/latent-gemma
+- https://github.com/casper-hansen/OpenCoconut
 
 ```bibtex
 
